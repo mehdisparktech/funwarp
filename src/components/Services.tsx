@@ -2,36 +2,34 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { services } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { RichLines } from "@/lib/content/rich-text";
 import { easeOut } from "@/lib/motion";
 
 export function Services() {
+  const { services } = useContent();
+
   return (
     <section id="services" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-              Capabilities
+              {services.eyebrow}
             </p>
             <h2 className="max-w-xl font-display text-4xl font-bold leading-[1.02] sm:text-6xl">
-              Ideas in.
-              <br />
-              Software out.
+              <RichLines value={services.headline} />
             </h2>
           </Reveal>
           <Reveal delay={0.12} direction="right">
-            <p className="max-w-sm text-cream/65">
-              Six focused practices. One studio. End-to-end from concept to
-              production.
-            </p>
+            <p className="max-w-sm text-cream/65">{services.description}</p>
           </Reveal>
         </div>
       </div>
 
       <Stagger className="border-y border-cream/10">
-        {services.map((service, i) => (
+        {services.items.map((service, i) => (
           <StaggerItem key={service.title}>
             <motion.div
               whileHover={{ backgroundColor: "rgba(223,208,184,0.04)" }}

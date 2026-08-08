@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useContent } from "@/components/content/ContentProvider";
 
 export function TrustBar() {
-  const logos = ["Nexora", "Brightlane", "Orbital", "Kinetic", "Lumina", "Vaultly"];
-  const loop = [...logos, ...logos];
+  const { trustBar } = useContent();
+  const loop = [...trustBar.logos, ...trustBar.logos];
 
   return (
     <motion.section

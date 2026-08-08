@@ -1,26 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { experienceCards, journey } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
+import { RichLines } from "@/lib/content/rich-text";
 
 export function ClientExperience() {
+  const { experience } = useContent();
+
   return (
     <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            Experience
+            {experience.eyebrow}
           </p>
           <h2 className="max-w-2xl font-display text-4xl font-bold sm:text-5xl">
-            Working with us
-            <br />
-            should feel easy.
+            <RichLines value={experience.headline} />
           </h2>
         </Reveal>
 
         <Stagger className="mt-14 grid gap-px bg-cream/10 md:grid-cols-3" delay={0.08}>
-          {experienceCards.map((card, i) => (
+          {experience.cards.map((card, i) => (
             <StaggerItem key={card.title}>
               <motion.article
                 whileHover={{ y: -4 }}
@@ -38,7 +39,7 @@ export function ClientExperience() {
 
         <Reveal delay={0.15} className="mt-8">
           <div className="flex flex-wrap items-center gap-3 border border-cream/10 p-5">
-            {journey.map((step, i) => (
+            {experience.journey.map((step, i) => (
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 10 }}
@@ -48,7 +49,7 @@ export function ClientExperience() {
                 className="flex items-center gap-3"
               >
                 <span className="font-display text-xl text-cream/80">{step}</span>
-                {i < journey.length - 1 ? (
+                {i < experience.journey.length - 1 ? (
                   <span className="text-taupe">→</span>
                 ) : null}
               </motion.div>

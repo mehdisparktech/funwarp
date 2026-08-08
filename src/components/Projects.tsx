@@ -2,29 +2,30 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { projects } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { Reveal } from "@/components/ui/Reveal";
+import { RichLines } from "@/lib/content/rich-text";
 import { easeOut } from "@/lib/motion";
 
 export function Projects() {
+  const { projects } = useContent();
+
   return (
     <section id="work" className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <div className="mb-16 max-w-3xl">
             <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-              Selected work
+              {projects.eyebrow}
             </p>
             <h2 className="font-display text-4xl font-bold leading-[1.02] sm:text-6xl">
-              Products, not
-              <br />
-              <span className="text-taupe">just repositories.</span>
+              <RichLines value={projects.headline} />
             </h2>
           </div>
         </Reveal>
 
         <div className="space-y-6">
-          {projects.map((project, i) => (
+          {projects.items.map((project, i) => (
             <Reveal
               key={project.name}
               delay={i * 0.06}
@@ -83,10 +84,10 @@ export function Projects() {
                     ))}
                   </div>
                   <Link
-                    href="/contact"
+                    href={project.link || "/contact"}
                     className="mt-8 inline-flex w-fit border-b border-cream/40 pb-1 text-sm uppercase tracking-[0.16em] transition hover:border-cream"
                   >
-                    View case study
+                    {projects.cardCta}
                   </Link>
                 </div>
               </motion.article>

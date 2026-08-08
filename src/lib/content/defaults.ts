@@ -1,0 +1,497 @@
+import type { SiteContent } from "./types";
+
+export const defaultContent: SiteContent = {
+  site: {
+    brand: "FUNWARP",
+    tagline: "Warp-speed code. Unlimited fun.",
+    url: "https://funwarp.com",
+    description:
+      "FUNWARP is a global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
+    keywords: [
+      "software development company",
+      "custom software development",
+      "web application development",
+      "mobile app development",
+      "SaaS development",
+      "AI development",
+      "software engineering company",
+      "digital product development",
+    ],
+    ogTitle: "FUNWARP — Warp-speed code. Unlimited fun.",
+    ogDescription:
+      "FUNWARP is a global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
+    socialLinks: [
+      "https://linkedin.com",
+      "https://github.com",
+      "https://x.com",
+      "https://dribbble.com",
+    ],
+  },
+  navbar: {
+    brand: "FUNWARP",
+    links: [
+      { href: "/#work", label: "Work" },
+      { href: "/#services", label: "Services" },
+      { href: "/#process", label: "Process" },
+      { href: "/#about", label: "About" },
+      { href: "/#insights", label: "Insights" },
+    ],
+    ctaLabel: "Start",
+    ctaMobileLabel: "Start a project",
+    ctaHref: "/contact",
+  },
+  hero: {
+    badge: "Available for new projects",
+    headline: "Warp-speed\ncode.\n*Unlimited*\nfun.",
+    megaText: "WARP",
+    description:
+      "A global software studio for founders who want products that feel sharp, fast and human — web, mobile, SaaS and AI.",
+    primaryCta: { label: "Start a project", href: "/contact" },
+    secondaryCta: { label: "See work", href: "/#work" },
+    capabilities: [
+      { number: "01", label: "Web apps" },
+      { number: "02", label: "Mobile" },
+      { number: "03", label: "SaaS" },
+      { number: "04", label: "AI products" },
+    ],
+  },
+  trustBar: {
+    logos: ["Nexora", "Brightlane", "Orbital", "Kinetic", "Lumina", "Vaultly"],
+  },
+  projects: {
+    eyebrow: "Selected work",
+    headline: "Products, not\n*just repositories.*",
+    cardCta: "View case study",
+    items: [
+      {
+        name: "FlowDesk",
+        industry: "Operations",
+        description:
+          "Business workflow automation platform that turns messy processes into clear, trackable systems.",
+        tech: ["Next.js", "Node.js", "PostgreSQL"],
+        results: "42% faster ops throughput",
+        accent: "from-taupe/40 via-cream/15 to-transparent",
+      },
+      {
+        name: "Medora",
+        industry: "Healthcare",
+        description:
+          "Modern healthcare management application built for clinics that need clarity under pressure.",
+        tech: ["React", "TypeScript", "Supabase"],
+        results: "3x faster patient intake",
+        accent: "from-cream/30 via-taupe/20 to-transparent",
+      },
+      {
+        name: "Finora",
+        industry: "Fintech",
+        description:
+          "Financial analytics SaaS platform delivering live insights without spreadsheet chaos.",
+        tech: ["Next.js", "Python", "AWS"],
+        results: "Real-time reporting at scale",
+        accent: "from-slate/60 via-taupe/25 to-transparent",
+      },
+      {
+        name: "Shoply",
+        industry: "E-commerce",
+        description:
+          "Scalable e-commerce experience designed for conversion, speed and growth.",
+        tech: ["Flutter", "Node.js", "Cloudflare"],
+        results: "+28% conversion lift",
+        accent: "from-taupe/50 via-cream/20 to-transparent",
+      },
+    ],
+  },
+  services: {
+    eyebrow: "Capabilities",
+    headline: "Ideas in.\nSoftware out.",
+    description:
+      "Six focused practices. One studio. End-to-end from concept to production.",
+    items: [
+      {
+        title: "Web Applications",
+        description:
+          "Fast, scalable and beautiful web applications built for real users.",
+        icon: "globe",
+      },
+      {
+        title: "Mobile Applications",
+        description:
+          "Modern iOS and Android applications with smooth user experiences.",
+        icon: "smartphone",
+      },
+      {
+        title: "SaaS Products",
+        description: "Scalable SaaS platforms designed for growth.",
+        icon: "layers",
+      },
+      {
+        title: "AI & Intelligent Software",
+        description: "AI-powered products, automation and intelligent workflows.",
+        icon: "sparkles",
+      },
+      {
+        title: "Custom Software",
+        description:
+          "Software engineered around your exact business requirements.",
+        icon: "code",
+      },
+      {
+        title: "UI/UX & Product Design",
+        description: "Interfaces that are simple, intuitive and built to convert.",
+        icon: "palette",
+      },
+    ],
+  },
+  process: {
+    eyebrow: "Process",
+    headline: "Six steps.\nZero chaos.",
+    megaText: "06",
+    items: [
+      {
+        number: "01",
+        title: "Discover",
+        description: "Understand the business, users and goals.",
+      },
+      {
+        number: "02",
+        title: "Plan",
+        description: "Define architecture, features and roadmap.",
+      },
+      {
+        number: "03",
+        title: "Design",
+        description: "Turn ideas into intuitive product experiences.",
+      },
+      {
+        number: "04",
+        title: "Build",
+        description: "Engineering, integrations, testing and iteration.",
+      },
+      {
+        number: "05",
+        title: "Launch",
+        description: "Deploy, monitor and optimize.",
+      },
+      {
+        number: "06",
+        title: "Scale",
+        description: "Continue improving as the product grows.",
+      },
+    ],
+  },
+  principles: {
+    eyebrow: "Principles",
+    headline: "Fast is not\nrushed.\n*It's precise.*",
+    description:
+      "Speed with craft. Clarity with ownership. That's how FUNWARP ships.",
+    items: [
+      {
+        number: "01",
+        title: "Speed",
+        description: "We move quickly without sacrificing engineering quality.",
+      },
+      {
+        number: "02",
+        title: "Clarity",
+        description: "Clear communication. Clear scope. Clear execution.",
+      },
+      {
+        number: "03",
+        title: "Craft",
+        description: "Every interface and every line of code has a purpose.",
+      },
+      {
+        number: "04",
+        title: "Ownership",
+        description: "We treat your product like we own the outcome.",
+      },
+    ],
+  },
+  technology: {
+    headline: "Right tools.\nLong shelf life.",
+    description:
+      "We choose stacks for reliability and velocity — not trend cycles.",
+    groups: [
+      {
+        category: "Frontend",
+        items: ["React", "Next.js", "TypeScript", "Flutter"],
+      },
+      {
+        category: "Backend",
+        items: ["Node.js", "Python", "Supabase", "PostgreSQL"],
+      },
+      {
+        category: "Cloud",
+        items: ["AWS", "Vercel", "Cloudflare"],
+      },
+      {
+        category: "AI",
+        items: ["OpenAI", "AI APIs", "Machine Learning", "Automation"],
+      },
+    ],
+  },
+  fun: {
+    eyebrow: "Why FUN?",
+    headline: "Because great software\nshouldn't feel boring.",
+    description:
+      "The “FUN” in FUNWARP isn't decoration. It's our belief that strong engineering and creative thinking belong together — so the product feels sharp, and the collaboration feels easy.",
+    reasons: [
+      {
+        title: "Serious work, human energy",
+        copy: "We take your product seriously — without making the process feel stiff or exhausting. Clear updates, honest feedback, and a team that actually enjoys building.",
+      },
+      {
+        title: "Creativity with discipline",
+        copy: "Fun doesn't mean careless. It means we explore better ideas, push UX further, and still ship with solid architecture, testing and deadlines.",
+      },
+      {
+        title: "Partnership, not handoff",
+        copy: "Working with FUNWARP should feel like adding a product team — not buying a silent agency package and hoping for the best.",
+      },
+    ],
+  },
+  experience: {
+    eyebrow: "Experience",
+    headline: "Working with us\nshould feel easy.",
+    cards: [
+      {
+        title: "Clear Communication",
+        description: "No disappearing developers. No confusing updates.",
+      },
+      {
+        title: "Predictable Delivery",
+        description: "Transparent milestones and realistic timelines.",
+      },
+      {
+        title: "Long-Term Partnership",
+        description: "We don't disappear after launch.",
+      },
+    ],
+    journey: ["Idea", "Design", "Build", "Launch", "Growth"],
+  },
+  about: {
+    eyebrow: "About",
+    headline: "Engineers who\nactually enjoy\nbuilding things.",
+    paragraphs: [
+      "FUNWARP started by helping clients build software remotely. Over time, projects became partnerships — and the studio became a dedicated technology company for international businesses.",
+      "Today we design, build and scale digital products with speed, clarity and craft.",
+    ],
+    stats: [
+      { value: 40, suffix: "+", label: "Projects" },
+      { value: 25, suffix: "+", label: "Clients" },
+      { value: 12, suffix: "", label: "Countries" },
+      { value: 6, suffix: "+", label: "Years Experience" },
+    ],
+  },
+  team: {
+    eyebrow: "People",
+    headline: "Meet the people\n*behind the warp.*",
+    description:
+      "A small, focused team of developers and designers who love turning complex ideas into simple, powerful products.",
+    stats: [
+      { value: "4+", label: "Core Specialists" },
+      { value: "40+", label: "Projects Delivered" },
+      { value: "20+", label: "Years Combined Experience" },
+      { value: "12", label: "Countries Served" },
+    ],
+    members: [
+      {
+        name: "MD Irfan Hossain",
+        role: "Senior App Developer",
+        bio: "Builds fast, reliable mobile experiences that feel great on every device.",
+        skills: ["Flutter", "Dart", "iOS", "Android", "Firebase"],
+        initials: "IH",
+        accent: "from-taupe/50 to-cream/30",
+        image: "/team/irfan-hossain.png",
+        social: { linkedin: "#", github: "#", x: "#" },
+      },
+      {
+        name: "Mehdi Hasan",
+        role: "Senior Web Developer",
+        bio: "Turns complex product ideas into fast, scalable and intuitive web experiences.",
+        skills: [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "JavaScript",
+          "Frontend Architecture",
+        ],
+        initials: "MH",
+        accent: "from-cream/40 to-taupe/40",
+        image: "/team/mehdi-hasan.png",
+        social: { linkedin: "#", github: "#", x: "#" },
+      },
+      {
+        name: "Sabbir Ahmed",
+        role: "UI/UX Designer",
+        bio: "Designs interfaces that make complex products feel simple.",
+        skills: [
+          "Figma",
+          "Design Systems",
+          "Prototyping",
+          "User Research",
+          "Product Design",
+        ],
+        initials: "SA",
+        accent: "from-slate/80 to-taupe/50",
+        image: "/team/ui-designer.png",
+        website: "https://rpsabbir303.framer.website/",
+        social: { linkedin: "#", github: "#", x: "#" },
+      },
+      {
+        name: "MD Abdur Razzak Rakib",
+        role: "Backend Developer",
+        bio: "Builds secure, scalable systems that power everything behind the interface.",
+        skills: ["Node.js", "Python", "PostgreSQL", "Supabase", "REST API"],
+        initials: "RR",
+        accent: "from-taupe/60 to-cream/25",
+        image: "/team/abdur-razzak-rakib.png",
+        social: { linkedin: "#", github: "#", x: "#" },
+      },
+    ],
+    ctaHeadline: "Want to build with us?",
+    ctaDescription:
+      "Tell us about your product idea — we'll help shape the next step.",
+    ctaLabel: "Start a project",
+    ctaHref: "/contact",
+  },
+  testimonials: {
+    eyebrow: "Words",
+    headline: "Good software.\nHappy humans.",
+    items: [
+      {
+        quote:
+          "FUNWARP turned a rough idea into a product we could actually launch.",
+        name: "Alex Rivera",
+        role: "Founder, Placeholder Co.",
+      },
+      {
+        quote:
+          "The communication was excellent and the engineering quality exceeded our expectations.",
+        name: "Jordan Lee",
+        role: "Product Lead, Sample Labs",
+      },
+      {
+        quote:
+          "It felt less like hiring an agency and more like adding an engineering team.",
+        name: "Sam Okonkwo",
+        role: "CEO, Demo Ventures",
+      },
+    ],
+  },
+  global: {
+    eyebrow: "Global",
+    headline: "Built here.\n*Used everywhere.*",
+    description:
+      "A global mindset, wherever we're building from. We collaborate with founders and teams across continents.",
+    mapTitle: "Global reach",
+    mapSubtitle: "Teams & clients we collaborate with worldwide",
+    mapCount: "12+",
+    mapEmbedUrl:
+      "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d127248000!2d20!3d22!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1710000000000!5m2!1sen!2sbd",
+    mapDisclaimer:
+      "Map shows a global view — regions below are places we collaborate with, not physical office locations.",
+    regionsLabel: "Active regions",
+    regions: [
+      "Bangladesh",
+      "United States",
+      "United Kingdom",
+      "Europe",
+      "Australia",
+      "Canada",
+      "Middle East",
+    ],
+  },
+  faq: {
+    eyebrow: "FAQ",
+    headline: "Questions,\nanswered.",
+    items: [
+      {
+        q: "Do we need a full product brief before starting?",
+        a: "No. A rough idea is enough. We'll help shape scope, priorities and milestones during discovery.",
+      },
+      {
+        q: "Can FUNWARP work with our existing tools and stack?",
+        a: "Yes. We integrate with common platforms, APIs and cloud tools, or recommend a cleaner stack when needed.",
+      },
+      {
+        q: "Do you build both design and engineering?",
+        a: "Yes. Product design, frontend, backend and mobile specialists collaborate as one team.",
+      },
+      {
+        q: "How do timelines and communication work?",
+        a: "Clear milestones, predictable updates and a dedicated point of contact — no disappearing developers.",
+      },
+      {
+        q: "Can you continue after launch?",
+        a: "Absolutely. We support iteration, monitoring and long-term product growth after launch.",
+      },
+    ],
+  },
+  cta: {
+    eyebrow: "Next step",
+    headline: "Got an idea\nworth building?",
+    description:
+      "No pitch deck theater. Just a clear conversation about what you want to ship.",
+    megaText: "BUILD",
+    primaryCta: { label: "Start a project", href: "/contact" },
+    secondaryCta: { label: "Talk to us", href: "/contact" },
+  },
+  footer: {
+    brand: "FUNWARP",
+    tagline: "Warp-speed code. Unlimited fun.",
+    columns: [
+      {
+        title: "Studio",
+        links: [
+          { href: "/#about", label: "About" },
+          { href: "/#work", label: "Work" },
+          { href: "/#services", label: "Services" },
+          { href: "/contact", label: "Contact" },
+        ],
+      },
+      {
+        title: "More",
+        links: [
+          { href: "/#process", label: "Process" },
+          { href: "/#team", label: "Team" },
+          { href: "/#insights", label: "Insights" },
+          { href: "/privacy", label: "Privacy" },
+        ],
+      },
+    ],
+    statusLabel: "Status",
+    statusText: "Open for projects",
+    copyright: "© 2026 FUNWARP",
+    bottomLinks: [
+      { href: "/privacy", label: "Privacy" },
+      { href: "/terms", label: "Terms" },
+    ],
+  },
+  contact: {
+    eyebrow: "Contact",
+    headline: "Let's build\nsomething.",
+    description:
+      "Share a bit about your product, timeline and goals. We'll reply with clear next steps.",
+    successMessage: "Message received. We'll be in touch soon.",
+    submitLabel: "Send project inquiry",
+    projectTypes: [
+      "Web App",
+      "Mobile App",
+      "SaaS",
+      "AI Product",
+      "Custom Software",
+      "Other",
+    ],
+    budgets: ["Under $5k", "$5k–$15k", "$15k–$50k", "$50k+"],
+    timelines: ["ASAP", "1–3 months", "3–6 months", "Flexible"],
+  },
+  privacy: {
+    title: "Privacy Policy",
+    body: "This is a placeholder privacy policy for the FUNWARP website. Replace this page with your final legal copy before launch.",
+  },
+  terms: {
+    title: "Terms of Service",
+    body: "This is a placeholder terms of service page for the FUNWARP website. Replace this page with your final legal copy before launch.",
+  },
+};

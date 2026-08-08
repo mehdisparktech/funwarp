@@ -1,18 +1,27 @@
 import type { Metadata } from "next";
+import { splitParagraphs } from "@/lib/content/rich-text";
+import { getSiteContent } from "@/lib/content/store";
 
-export const metadata: Metadata = {
-  title: "Terms of Service",
-  description: "FUNWARP terms of service placeholder.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getSiteContent();
+  return {
+    title: content.terms.title,
+    description: content.terms.body.slice(0, 160),
+  };
+}
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const content = await getSiteContent();
+  const paragraphs = splitParagraphs(content.terms.body);
+
   return (
     <section className="mx-auto max-w-3xl px-5 py-28 sm:px-8">
-      <h1 className="text-4xl font-bold text-white">Terms of Service</h1>
-      <p className="mt-6 leading-relaxed text-muted">
-        This is a placeholder terms of service page for the FUNWARP website.
-        Replace this page with your final legal copy before launch.
-      </p>
+      <h1 className="text-4xl font-bold text-white">{content.terms.title}</h1>
+      <div className="mt-6 space-y-4 leading-relaxed text-muted">
+        {paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+      </div>
     </section>
   );
 }

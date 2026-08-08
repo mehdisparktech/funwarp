@@ -2,11 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useContent } from "@/components/content/ContentProvider";
+import { RichLines } from "@/lib/content/rich-text";
 import { easeOut } from "@/lib/motion";
 
-const lines = ["Warp-speed", "code.", "Unlimited", "fun."];
-
 export function Hero() {
+  const { hero } = useContent();
+  const lines = hero.headline.split("\n");
+
   return (
     <section className="relative min-h-[100svh] overflow-hidden pt-16">
       <motion.div
@@ -16,7 +19,7 @@ export function Hero() {
         transition={{ duration: 1.2, ease: easeOut }}
         className="pointer-events-none absolute -left-8 top-[18%] font-display text-[28vw] font-bold leading-none mega-outline select-none sm:top-[12%] animate-drift"
       >
-        WARP
+        {hero.megaText}
       </motion.div>
 
       <div aria-hidden className="pointer-events-none absolute inset-x-0 top-[42%] space-y-3">
@@ -41,13 +44,13 @@ export function Hero() {
               className="mb-8 flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-taupe"
             >
               <span className="status-dot h-2 w-2 rounded-full bg-cream" />
-              Available for new projects
+              {hero.badge}
             </motion.div>
 
             <h1 className="max-w-[11ch] font-display text-[clamp(3.4rem,9vw,7.5rem)] font-bold leading-[0.9]">
               {lines.map((line, i) => (
                 <motion.span
-                  key={line + i}
+                  key={`${line}-${i}`}
                   initial={{ opacity: 0, y: 50, rotateX: 25 }}
                   animate={{ opacity: 1, y: 0, rotateX: 0 }}
                   transition={{
@@ -55,10 +58,9 @@ export function Hero() {
                     delay: 0.12 + i * 0.1,
                     ease: easeOut,
                   }}
-                  className={`block origin-left ${line === "Unlimited" ? "text-taupe" : ""
-                    }`}
+                  className="block origin-left"
                 >
-                  {line}
+                  <RichLines value={line} />
                 </motion.span>
               ))}
             </h1>
@@ -71,24 +73,23 @@ export function Hero() {
             className="max-w-sm lg:pt-16"
           >
             <p className="text-base leading-relaxed text-cream/70 sm:text-lg">
-              A global software studio for founders who want products that feel
-              sharp, fast and human — web, mobile, SaaS and AI.
+              {hero.description}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/contact"
+                  href={hero.primaryCta.href}
                   className="inline-flex w-full items-center justify-center bg-cream px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-ink transition hover:bg-[#efe4d0] sm:w-auto"
                 >
-                  Start a project
+                  {hero.primaryCta.label}
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/#work"
+                  href={hero.secondaryCta.href}
                   className="inline-flex w-full items-center justify-center border border-cream/25 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-cream transition hover:border-cream sm:w-auto"
                 >
-                  See work
+                  {hero.secondaryCta.label}
                 </Link>
               </motion.div>
             </div>
@@ -104,14 +105,9 @@ export function Hero() {
           }}
           className="mt-16 grid grid-cols-2 gap-6 border-t border-cream/10 pt-8 sm:grid-cols-4"
         >
-          {[
-            ["01", "Web apps"],
-            ["02", "Mobile"],
-            ["03", "SaaS"],
-            ["04", "AI products"],
-          ].map(([n, label]) => (
+          {hero.capabilities.map((cap) => (
             <motion.div
-              key={n}
+              key={cap.number + cap.label}
               variants={{
                 hidden: { opacity: 0, y: 24 },
                 show: {
@@ -123,9 +119,9 @@ export function Hero() {
               whileHover={{ x: 6 }}
               className="group cursor-default"
             >
-              <p className="font-mono text-xs text-taupe">{n}</p>
+              <p className="font-mono text-xs text-taupe">{cap.number}</p>
               <p className="mt-2 font-display text-2xl text-cream transition group-hover:text-taupe sm:text-3xl">
-                {label}
+                {cap.label}
               </p>
             </motion.div>
           ))}

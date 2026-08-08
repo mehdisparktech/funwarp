@@ -4,23 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { navLinks } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { cn } from "@/lib/utils";
-
-const SECTION_IDS = navLinks
-  .map((l) => (l.href.includes("#") ? l.href.split("#")[1] : ""))
-  .filter(Boolean);
 
 function getSectionId(href: string) {
   return href.includes("#") ? href.split("#")[1] : null;
 }
 
 export function Navbar() {
+  const { navbar } = useContent();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const sectionIds = useMemo(() => SECTION_IDS, []);
+  const sectionIds = useMemo(
+    () =>
+      navbar.links
+        .map((l) => (l.href.includes("#") ? l.href.split("#")[1] : ""))
+        .filter(Boolean),
+    [navbar.links],
+  );
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -36,12 +39,11 @@ export function Navbar() {
       return;
     }
 
-    const NAV_OFFSET = 96; // fixed header + breathing room
+    const NAV_OFFSET = 96;
 
     const updateActive = () => {
       setScrolled(window.scrollY > 8);
 
-      // Near top / hero → no section active
       if (window.scrollY < 80) {
         setActiveId(null);
         return;
@@ -57,7 +59,6 @@ export function Navbar() {
         if (top <= marker) current = id;
       }
 
-      // If near page bottom, force last visible nav section
       const docHeight = document.documentElement.scrollHeight;
       const viewportBottom = window.scrollY + window.innerHeight;
       if (viewportBottom >= docHeight - 40) {
@@ -114,15 +115,15 @@ export function Navbar() {
           className="font-display text-xl font-bold tracking-tight"
           onClick={() => setActiveId(null)}
         >
-          FUNWARP
+          {navbar.brand}
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((l) => {
+          {navbar.links.map((l) => {
             const id = getSectionId(l.href);
             return (
               <Link
-                key={l.href}
+                key={l.href + l.label}
                 href={l.href}
                 className={linkClass(l.href)}
                 aria-current={activeId === id ? "true" : undefined}
@@ -135,15 +136,15 @@ export function Navbar() {
             );
           })}
           <Link
-            href="/contact"
+            href={navbar.ctaHref}
             className={cn(
               "border px-4 py-2 text-[13px] uppercase tracking-[0.16em] transition",
-              pathname === "/contact"
+              pathname === navbar.ctaHref
                 ? "border-cream bg-cream text-ink"
                 : "border-cream/30 text-cream hover:bg-cream hover:text-ink",
             )}
           >
-            Start
+            {navbar.ctaLabel}
           </Link>
         </div>
 
@@ -160,11 +161,11 @@ export function Navbar() {
       {open ? (
         <div className="border-t border-cream/10 bg-ink px-5 py-6 md:hidden">
           <div className="flex flex-col gap-4">
-            {navLinks.map((l) => {
+            {navbar.links.map((l) => {
               const id = getSectionId(l.href);
               return (
                 <Link
-                  key={l.href}
+                  key={l.href + l.label}
                   href={l.href}
                   onClick={() => {
                     if (id) setActiveId(id);
@@ -178,16 +179,16 @@ export function Navbar() {
               );
             })}
             <Link
-              href="/contact"
+              href={navbar.ctaHref}
               onClick={() => setOpen(false)}
               className={cn(
                 "mt-2 inline-flex w-fit border px-5 py-3 uppercase tracking-[0.16em]",
-                pathname === "/contact"
+                pathname === navbar.ctaHref
                   ? "border-cream bg-cream text-ink"
                   : "border-cream",
               )}
             >
-              Start a project
+              {navbar.ctaMobileLabel}
             </Link>
           </div>
         </div>

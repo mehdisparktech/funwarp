@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Manrope, Syne } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { MouseTracer } from "@/components/MouseTracer";
-import { Navbar } from "@/components/Navbar";
+import { SiteChrome } from "@/components/SiteChrome";
+import { getSiteContent } from "@/lib/content/store";
 import "./globals.css";
+
+export const dynamic = "force-dynamic";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -23,69 +24,56 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://funwarp.com";
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getSiteContent();
+  const siteUrl = content.site.url || "https://funwarp.com";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "FUNWARP — Warp-speed code. Unlimited fun.",
-    template: "%s — FUNWARP",
-  },
-  description:
-    "FUNWARP is a global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
-  keywords: [
-    "software development company",
-    "custom software development",
-    "web application development",
-    "mobile app development",
-    "SaaS development",
-    "AI development",
-    "software engineering company",
-    "digital product development",
-  ],
-  authors: [{ name: "FUNWARP" }],
-  creator: "FUNWARP",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: "FUNWARP",
-    title: "FUNWARP — Warp-speed code. Unlimited fun.",
-    description:
-      "FUNWARP is a global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "FUNWARP — Warp-speed code. Unlimited fun.",
-    description:
-      "FUNWARP is a global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-};
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: content.site.ogTitle,
+      template: `%s — ${content.site.brand}`,
+    },
+    description: content.site.description,
+    keywords: content.site.keywords,
+    authors: [{ name: content.site.brand }],
+    creator: content.site.brand,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: siteUrl,
+      siteName: content.site.brand,
+      title: content.site.ogTitle,
+      description: content.site.ogDescription,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: content.site.ogTitle,
+      description: content.site.ogDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: siteUrl,
+    },
+  };
+}
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "FUNWARP",
-  url: siteUrl,
-  description:
-    "Global software development company building high-performance web apps, mobile apps, SaaS platforms, AI products and custom software.",
-  slogan: "Warp-speed code. Unlimited fun.",
-  sameAs: [
-    "https://linkedin.com",
-    "https://github.com",
-    "https://x.com",
-    "https://dribbble.com",
-  ],
-};
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const content = await getSiteContent();
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: content.site.brand,
+    url: content.site.url,
+    description: content.site.description,
+    slogan: content.site.tagline,
+    sameAs: content.site.socialLinks,
+  };
+
   return (
     <html
       lang="en"
@@ -98,10 +86,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             __html: JSON.stringify(organizationJsonLd),
           }}
         />
-        <MouseTracer />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <SiteChrome content={content}>{children}</SiteChrome>
       </body>
     </html>
   );

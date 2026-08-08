@@ -3,26 +3,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { team, teamStats } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { Reveal, Stagger, StaggerItem } from "@/components/ui/Reveal";
 import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons";
+import { RichLines } from "@/lib/content/rich-text";
 
 export function Team() {
+  const { team } = useContent();
+
   return (
     <section id="team" className="py-24 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
         <Reveal>
           <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            People
+            {team.eyebrow}
           </p>
           <h2 className="max-w-3xl font-display text-4xl font-bold leading-[1.02] sm:text-6xl">
-            Meet the people
-            <br />
-            <span className="text-taupe">behind the warp.</span>
+            <RichLines value={team.headline} />
           </h2>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-cream/55 sm:text-lg">
-            A small, focused team of developers and designers who love turning
-            complex ideas into simple, powerful products.
+            {team.description}
           </p>
         </Reveal>
 
@@ -30,7 +30,7 @@ export function Team() {
           className="mt-12 grid grid-cols-2 gap-3 lg:grid-cols-4"
           delay={0.05}
         >
-          {teamStats.map((s) => (
+          {team.stats.map((s) => (
             <StaggerItem key={s.label}>
               <motion.div
                 whileHover={{ y: -4, borderColor: "rgba(223,208,184,0.28)" }}
@@ -51,25 +51,29 @@ export function Team() {
           className="mt-10 grid gap-5 sm:grid-cols-2 xl:grid-cols-4"
           delay={0.08}
         >
-          {team.map((member) => (
+          {team.members.map((member) => (
             <StaggerItem key={member.name}>
               <motion.article
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-cream/10 bg-[#1a1f26] shadow-[0_20px_50px_rgba(0,0,0,0.25)]"
               >
-                {/* top accent line */}
                 <div className="absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent opacity-0 transition group-hover:opacity-100" />
 
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={member.image}
-                    alt={`${member.name} — ${member.role}`}
-                    fill
-                    sizes="(max-width: 1280px) 50vw, 25vw"
-                    className="object-cover object-[center_20%] transition duration-700 group-hover:scale-105"
-                    priority
-                  />
+                <div className="relative aspect-[4/5] overflow-hidden bg-slate/40">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={`${member.name} — ${member.role}`}
+                      fill
+                      sizes="(max-width: 1280px) 50vw, 25vw"
+                      className="object-cover object-[center_20%] transition duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="grid h-full place-items-center font-display text-5xl text-cream/30">
+                      {member.initials}
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f26] via-[#1a1f26]/25 to-transparent" />
                   <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-transparent to-transparent" />
 
@@ -100,7 +104,7 @@ export function Team() {
                   </div>
 
                   <div className="mt-auto flex items-center justify-between gap-3 border-t border-cream/10 pt-5 mt-6">
-                    {"website" in member && member.website ? (
+                    {member.website ? (
                       <a
                         href={member.website}
                         target="_blank"
@@ -152,18 +156,15 @@ export function Team() {
           >
             <div>
               <h3 className="font-display text-2xl font-semibold sm:text-3xl">
-                Have a project for the team?
+                {team.ctaHeadline}
               </h3>
-              <p className="mt-2 max-w-lg text-cream/55">
-                Tell us what you&apos;re building and we&apos;ll put the right
-                people around it.
-              </p>
+              <p className="mt-2 max-w-lg text-cream/55">{team.ctaDescription}</p>
             </div>
             <Link
-              href="/contact"
+              href={team.ctaHref}
               className="inline-flex rounded-xl bg-cream px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink transition hover:bg-[#efe4d0]"
             >
-              Start a project
+              {team.ctaLabel}
             </Link>
           </motion.div>
         </Reveal>

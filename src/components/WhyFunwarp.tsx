@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { principles } from "@/lib/data";
+import { useContent } from "@/components/content/ContentProvider";
 import { Reveal } from "@/components/ui/Reveal";
+import { RichLines } from "@/lib/content/rich-text";
 import { easeOut } from "@/lib/motion";
 
 export function WhyFunwarp() {
+  const { principles } = useContent();
+
   return (
     <section className="relative py-24 sm:py-32">
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
@@ -13,25 +16,20 @@ export function WhyFunwarp() {
           <Reveal direction="left">
             <div className="lg:sticky lg:top-28">
               <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-                Principles
+                {principles.eyebrow}
               </p>
               <h2 className="font-display text-4xl font-bold leading-[1.02] sm:text-5xl">
-                Fast is not
-                <br />
-                rushed.
-                <br />
-                <span className="text-taupe">It&apos;s precise.</span>
+                <RichLines value={principles.headline} />
               </h2>
               <p className="mt-6 max-w-md text-cream/60">
-                Speed with craft. Clarity with ownership. That&apos;s how FUNWARP
-                ships.
+                {principles.description}
               </p>
             </div>
           </Reveal>
 
           <div className="space-y-0 border-t border-cream/10">
-            {principles.map((item, i) => (
-              <Reveal key={item.number} delay={i * 0.08} direction="right">
+            {principles.items.map((item, i) => (
+              <Reveal key={item.number + item.title} delay={i * 0.08} direction="right">
                 <motion.div
                   whileHover={{ x: 8, backgroundColor: "rgba(223,208,184,0.03)" }}
                   transition={{ duration: 0.3, ease: easeOut }}
@@ -41,12 +39,10 @@ export function WhyFunwarp() {
                     {item.number}
                   </p>
                   <div>
-                    <h3 className="font-display text-3xl sm:text-4xl">
+                    <h3 className="font-display text-2xl font-semibold">
                       {item.title}
                     </h3>
-                    <p className="mt-3 max-w-md text-cream/60">
-                      {item.description}
-                    </p>
+                    <p className="mt-2 text-cream/60">{item.description}</p>
                   </div>
                 </motion.div>
               </Reveal>

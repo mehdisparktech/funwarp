@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Next.js is auto-detected on Netlify (OpenNext).
+# Add in Netlify UI → Environment variables:
+#   ADMIN_PASSWORD
+#   ADMIN_SECRET
