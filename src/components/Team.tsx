@@ -62,28 +62,16 @@ export function Team() {
                 <div className="absolute inset-x-0 top-0 z-20 h-px bg-gradient-to-r from-transparent via-cream/50 to-transparent opacity-0 transition group-hover:opacity-100" />
 
                 <div className="relative aspect-[4/5] overflow-hidden">
-                  {"image" in member && member.image ? (
-                    <>
-                      <Image
-                        src={member.image}
-                        alt={`${member.name} — ${member.role}`}
-                        fill
-                        sizes="(max-width: 1280px) 50vw, 25vw"
-                        className="object-cover object-[center_20%] transition duration-700 group-hover:scale-105"
-                        priority
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f26] via-[#1a1f26]/25 to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-transparent to-transparent" />
-                    </>
-                  ) : (
-                    <div
-                      className={`flex h-full items-center justify-center bg-gradient-to-br ${member.accent}`}
-                    >
-                      <span className="font-display text-5xl text-ink/35">
-                        {member.initials}
-                      </span>
-                    </div>
-                  )}
+                  <Image
+                    src={member.image}
+                    alt={`${member.name} — ${member.role}`}
+                    fill
+                    sizes="(max-width: 1280px) 50vw, 25vw"
+                    className="object-cover object-[center_20%] transition duration-700 group-hover:scale-105"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f26] via-[#1a1f26]/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-transparent to-transparent" />
 
                   <div className="absolute bottom-4 left-4 right-4">
                     <span className="inline-flex rounded-md bg-cream px-2.5 py-1 font-display text-[11px] font-semibold tracking-wide text-ink">
