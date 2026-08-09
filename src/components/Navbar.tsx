@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useContent } from "@/components/content/ContentProvider";
+import { PrimaryButton } from "@/components/ui/PrimaryButton";
 import { cn } from "@/lib/utils";
 
 function getSectionId(href: string) {
@@ -83,50 +84,37 @@ export function Navbar() {
     };
   }, [pathname, sectionIds]);
 
-  const linkClass = (href: string, mobile = false) => {
-    const id = getSectionId(href);
-    const isActive = Boolean(id && activeId === id);
-
-    if (mobile) {
-      return cn(
-        "font-display text-3xl transition-colors",
-        isActive ? "text-cream" : "text-cream/45",
-      );
-    }
-
-    return cn(
-      "relative text-[13px] uppercase tracking-[0.16em] transition-colors",
-      isActive ? "text-cream" : "text-cream/55 hover:text-cream",
-      isActive &&
-      "after:absolute after:-bottom-1 after:left-0 after:h-px after:w-full after:bg-cream",
-    );
-  };
-
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors",
-        scrolled || open ? "bg-ink/90 backdrop-blur-xl" : "bg-transparent",
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled || open
+          ? "border-b border-dark/8 bg-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(33,33,33,0.04)]"
+          : "bg-transparent",
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-5 sm:px-8">
+      <nav className="mx-auto flex h-[72px] max-w-[1240px] items-center justify-between px-5 sm:px-8">
         <Link
           href="/"
-          className="font-display text-xl font-bold tracking-tight"
+          className="font-display text-[1.35rem] font-bold tracking-tight text-dark"
           onClick={() => setActiveId(null)}
         >
           {navbar.brand}
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 lg:flex">
           {navbar.links.map((l) => {
             const id = getSectionId(l.href);
+            const isActive = Boolean(id && activeId === id);
             return (
               <Link
                 key={l.href + l.label}
                 href={l.href}
-                className={linkClass(l.href)}
-                aria-current={activeId === id ? "true" : undefined}
+                className={cn(
+                  "text-[15px] font-medium capitalize transition-colors",
+                  isActive ? "text-primary" : "text-dark/70 hover:text-primary",
+                )}
+                aria-current={isActive ? "true" : undefined}
                 onClick={() => {
                   if (id) setActiveId(id);
                 }}
@@ -135,34 +123,28 @@ export function Navbar() {
               </Link>
             );
           })}
-          <Link
-            href={navbar.ctaHref}
-            className={cn(
-              "border px-4 py-2 text-[13px] uppercase tracking-[0.16em] transition",
-              pathname === navbar.ctaHref
-                ? "border-cream bg-cream text-ink"
-                : "border-cream/30 text-cream hover:bg-cream hover:text-ink",
-            )}
-          >
-            {navbar.ctaLabel}
-          </Link>
+        </div>
+
+        <div className="hidden lg:block">
+          <PrimaryButton href={navbar.ctaHref}>{navbar.ctaLabel}</PrimaryButton>
         </div>
 
         <button
           type="button"
-          className="text-cream md:hidden"
+          className="grid h-11 w-11 place-items-center rounded-full border border-dark/10 text-dark lg:hidden"
           aria-label="Menu"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </nav>
 
       {open ? (
-        <div className="border-t border-cream/10 bg-ink px-5 py-6 md:hidden">
+        <div className="border-t border-dark/8 bg-white px-5 py-6 lg:hidden">
           <div className="flex flex-col gap-4">
             {navbar.links.map((l) => {
               const id = getSectionId(l.href);
+              const isActive = Boolean(id && activeId === id);
               return (
                 <Link
                   key={l.href + l.label}
@@ -171,25 +153,21 @@ export function Navbar() {
                     if (id) setActiveId(id);
                     setOpen(false);
                   }}
-                  className={linkClass(l.href, true)}
-                  aria-current={activeId === id ? "true" : undefined}
+                  className={cn(
+                    "font-display text-2xl font-semibold capitalize",
+                    isActive ? "text-primary" : "text-dark/55",
+                  )}
+                  aria-current={isActive ? "true" : undefined}
                 >
                   {l.label}
                 </Link>
               );
             })}
-            <Link
-              href={navbar.ctaHref}
-              onClick={() => setOpen(false)}
-              className={cn(
-                "mt-2 inline-flex w-fit border px-5 py-3 uppercase tracking-[0.16em]",
-                pathname === navbar.ctaHref
-                  ? "border-cream bg-cream text-ink"
-                  : "border-cream",
-              )}
-            >
-              {navbar.ctaMobileLabel}
-            </Link>
+            <div className="pt-2" onClick={() => setOpen(false)}>
+              <PrimaryButton href={navbar.ctaHref}>
+                {navbar.ctaMobileLabel}
+              </PrimaryButton>
+            </div>
           </div>
         </div>
       ) : null}

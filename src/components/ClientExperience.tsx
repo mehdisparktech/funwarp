@@ -9,36 +9,38 @@ export function ClientExperience() {
   const { experience } = useContent();
 
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+    <section className="section-pad bg-surface">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            {experience.eyebrow}
-          </p>
-          <h2 className="max-w-2xl font-display text-4xl font-bold sm:text-5xl">
+          <p className="eyebrow mb-3">{experience.eyebrow}</p>
+          <h2 className="max-w-2xl font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             <RichLines value={experience.headline} />
           </h2>
         </Reveal>
 
-        <Stagger className="mt-14 grid gap-px bg-cream/10 md:grid-cols-3" delay={0.08}>
+        <Stagger className="mt-12 grid gap-4 md:grid-cols-3" delay={0.08}>
           {experience.cards.map((card, i) => (
             <StaggerItem key={card.title}>
               <motion.article
                 whileHover={{ y: -4 }}
-                className="h-full bg-ink p-8"
+                className="h-full rounded-[24px] border border-dark/8 bg-white p-8"
               >
-                <p className="font-mono text-xs text-taupe">
+                <p className="text-sm font-semibold text-primary">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-6 font-display text-2xl">{card.title}</h3>
-                <p className="mt-3 text-cream/60">{card.description}</p>
+                <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight">
+                  {card.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-dark/60">
+                  {card.description}
+                </p>
               </motion.article>
             </StaggerItem>
           ))}
         </Stagger>
 
-        <Reveal delay={0.15} className="mt-8">
-          <div className="flex flex-wrap items-center gap-3 border border-cream/10 p-5">
+        <Reveal delay={0.12} className="mt-6">
+          <div className="flex flex-wrap items-center gap-3 rounded-[20px] border border-dark/8 bg-white p-5">
             {experience.journey.map((step, i) => (
               <motion.div
                 key={step}
@@ -48,9 +50,11 @@ export function ClientExperience() {
                 transition={{ delay: i * 0.08 }}
                 className="flex items-center gap-3"
               >
-                <span className="font-display text-xl text-cream/80">{step}</span>
+                <span className="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
+                  {step}
+                </span>
                 {i < experience.journey.length - 1 ? (
-                  <span className="text-taupe">→</span>
+                  <span className="text-dark/30">→</span>
                 ) : null}
               </motion.div>
             ))}

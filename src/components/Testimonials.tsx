@@ -10,13 +10,11 @@ export function Testimonials() {
   const { testimonials } = useContent();
 
   return (
-    <section id="insights" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+    <section id="insights" className="section-pad bg-white">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            {testimonials.eyebrow}
-          </p>
-          <h2 className="mb-16 font-display text-4xl font-bold sm:text-5xl">
+          <p className="eyebrow mb-3">{testimonials.eyebrow}</p>
+          <h2 className="mb-12 font-display text-4xl font-semibold tracking-tight sm:mb-16 sm:text-5xl">
             <RichLines value={testimonials.headline} />
           </h2>
         </Reveal>
@@ -25,27 +23,26 @@ export function Testimonials() {
           {testimonials.items.map((t, i) => (
             <motion.blockquote
               key={t.name + i}
-              initial={{ opacity: 0, y: 60, scale: 0.92, rotate: i % 2 === 0 ? -2 : 2 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{
-                duration: 0.7,
-                delay: i * 0.12,
+                duration: 0.65,
+                delay: i * 0.1,
                 ease: easeOut,
               }}
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-                borderColor: "rgba(223,208,184,0.35)",
-              }}
-              className="flex h-full flex-col border border-cream/10 bg-gradient-to-b from-slate/40 to-ink p-8"
+              whileHover={{ y: -8 }}
+              className="flex h-full flex-col rounded-[24px] border border-dark/8 bg-surface p-8"
             >
-              <p className="flex-1 text-lg leading-relaxed text-cream/80">
-                “{t.quote}”
+              <p className="text-4xl font-semibold text-primary/30">“</p>
+              <p className="mt-2 flex-1 text-base leading-relaxed text-dark/75">
+                {t.quote}
               </p>
-              <footer className="mt-8 border-t border-cream/10 pt-5">
-                <p className="font-display text-lg font-semibold">{t.name}</p>
-                <p className="mt-1 text-sm text-taupe">{t.role}</p>
+              <footer className="mt-8 border-t border-dark/8 pt-5">
+                <p className="font-display text-lg font-semibold tracking-tight">
+                  {t.name}
+                </p>
+                <p className="mt-1 text-sm text-dark/50">{t.role}</p>
               </footer>
             </motion.blockquote>
           ))}

@@ -30,17 +30,12 @@ export function SectionHeading({
         className,
       )}
     >
-      {eyebrow ? (
-        <p className="mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-taupe">
-          <span className="h-px w-6 bg-gradient-to-r from-taupe to-cream" />
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="font-display text-3xl font-bold tracking-tight text-cream sm:text-4xl md:text-[3.1rem] md:leading-[1.08]">
+      {eyebrow ? <p className="eyebrow mb-3">{eyebrow}</p> : null}
+      <h2 className="font-display text-3xl font-semibold tracking-tight text-dark sm:text-4xl md:text-[3.1rem] md:leading-[1.08]">
         {title}
       </h2>
       {description ? (
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-dark/65 sm:text-lg">
           {description}
         </p>
       ) : null}

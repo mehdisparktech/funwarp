@@ -9,34 +9,32 @@ export function FunSection() {
   const { fun } = useContent();
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+    <section className="section-pad bg-white">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            {fun.eyebrow}
-          </p>
-          <h2 className="max-w-4xl font-display text-4xl font-bold leading-[1.02] sm:text-6xl">
+          <p className="eyebrow mb-3">{fun.eyebrow}</p>
+          <h2 className="max-w-4xl font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
             <RichLines value={fun.headline} />
           </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-cream/65">
+          <p className="mt-6 max-w-2xl text-base leading-relaxed text-dark/65 sm:text-lg">
             {fun.description}
           </p>
         </Reveal>
 
-        <Stagger className="mt-14 grid gap-4 md:grid-cols-3" delay={0.08}>
+        <Stagger className="mt-12 grid gap-4 md:grid-cols-3" delay={0.08}>
           {fun.reasons.map((item, i) => (
             <StaggerItem key={item.title}>
               <motion.article
                 whileHover={{ y: -6 }}
-                className="h-full border border-cream/10 bg-slate/20 p-7 sm:p-8"
+                className="h-full rounded-[24px] border border-dark/8 bg-surface p-7 sm:p-8"
               >
-                <p className="font-mono text-xs text-taupe">
+                <p className="text-sm font-semibold text-primary">
                   {String(i + 1).padStart(2, "0")}
                 </p>
-                <h3 className="mt-5 font-display text-2xl font-semibold text-cream">
+                <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-cream/60 sm:text-base">
+                <p className="mt-3 text-[15px] leading-relaxed text-dark/60">
                   {item.copy}
                 </p>
               </motion.article>

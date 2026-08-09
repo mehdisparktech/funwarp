@@ -1,21 +1,16 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Manrope, Syne } from "next/font/google";
+import { Geist_Mono, Poppins } from "next/font/google";
 import { SiteChrome } from "@/components/SiteChrome";
 import { getSiteContent } from "@/lib/content/store";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
   display: "swap",
-});
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -77,7 +72,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${syne.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <script

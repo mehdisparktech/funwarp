@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import { ContentProvider } from "@/components/content/ContentProvider";
 import { Footer } from "@/components/Footer";
-import { MouseTracer } from "@/components/MouseTracer";
 import { Navbar } from "@/components/Navbar";
 import type { SiteContent } from "@/lib/content/types";
 
@@ -19,10 +18,11 @@ export function SiteChrome({
 
   return (
     <ContentProvider initial={content}>
-      {!isAdmin ? <MouseTracer /> : null}
-      {!isAdmin ? <Navbar /> : null}
-      <main className={isAdmin ? undefined : "flex-1"}>{children}</main>
-      {!isAdmin ? <Footer /> : null}
+      <div className={isAdmin ? "admin-theme min-h-full bg-[#15191f] text-cream" : undefined}>
+        {!isAdmin ? <Navbar /> : null}
+        <main className={isAdmin ? undefined : "flex-1"}>{children}</main>
+        {!isAdmin ? <Footer /> : null}
+      </div>
     </ContentProvider>
   );
 }

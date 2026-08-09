@@ -12,44 +12,45 @@ export function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="py-24 sm:py-32">
-      <div className="mx-auto grid max-w-[1400px] gap-12 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr]">
+    <section className="section-pad bg-white">
+      <div className="mx-auto grid max-w-[1240px] gap-10 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
         <Reveal>
-          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-            {faq.eyebrow}
-          </p>
-          <h2 className="font-display text-4xl font-bold sm:text-5xl">
+          <p className="eyebrow mb-3">{faq.eyebrow}</p>
+          <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
             <RichLines value={faq.headline} />
           </h2>
         </Reveal>
 
-        <div className="border-t border-cream/10">
+        <div className="space-y-3">
           {faq.items.map((item, i) => {
             const isOpen = open === i;
             return (
               <motion.div
                 key={item.q}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ delay: i * 0.05, duration: 0.5, ease: easeOut }}
-                className="border-b border-cream/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: i * 0.04, duration: 0.45, ease: easeOut }}
+                className={`overflow-hidden rounded-[20px] border transition ${isOpen
+                    ? "border-primary/25 bg-primary/[0.04]"
+                    : "border-dark/8 bg-surface"
+                  }`}
               >
                 <button
                   type="button"
-                  className="flex w-full items-start gap-4 py-6 text-left"
+                  className="flex w-full items-start gap-4 px-5 py-5 text-left sm:px-6"
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   aria-expanded={isOpen}
                 >
-                  <span className="pt-1 font-mono text-xs text-taupe">
+                  <span className="pt-1 text-sm font-semibold text-primary">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1 font-display text-xl sm:text-2xl">
+                  <span className="flex-1 font-display text-lg font-semibold tracking-tight sm:text-xl">
                     {item.q}
                   </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 180 : 0 }}
-                    className="text-taupe"
+                    className="text-xl text-primary"
                   >
                     {isOpen ? "−" : "+"}
                   </motion.span>
@@ -64,7 +65,9 @@ export function FAQ() {
                       transition={{ duration: 0.35, ease: easeOut }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pl-12 pr-8 text-cream/60">{item.a}</p>
+                      <p className="px-5 pb-5 pl-[3.75rem] pr-8 text-[15px] leading-relaxed text-dark/60 sm:px-6">
+                        {item.a}
+                      </p>
                     </motion.div>
                   ) : null}
                 </AnimatePresence>

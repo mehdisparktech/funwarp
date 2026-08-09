@@ -13,17 +13,17 @@ export function TrustBar() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="border-y border-cream/10 bg-slate/30 py-6"
+      className="border-y border-dark/8 bg-surface py-7"
     >
       <div className="overflow-hidden">
-        <div className="flex w-max animate-[marquee_26s_linear_infinite] items-center gap-12 px-6">
+        <div className="flex w-max animate-[marquee_28s_linear_infinite] items-center gap-10 px-6">
           {loop.map((logo, i) => (
             <span
               key={`${logo}-${i}`}
-              className="font-display text-2xl tracking-tight text-cream/25 transition hover:text-cream/55 sm:text-3xl"
+              className="font-display text-2xl font-semibold tracking-tight text-dark/25 transition hover:text-primary sm:text-3xl"
             >
               {logo}
-              <span className="mx-12 text-cream/15">/</span>
+              <span className="mx-10 text-dark/10">•</span>
             </span>
           ))}
         </div>

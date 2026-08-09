@@ -28,7 +28,7 @@ function renderInline(text: string): ReactNode {
   return parts.map((part, i) => {
     if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
       return (
-        <span key={i} className="text-taupe">
+        <span key={i} className="italic text-primary">
           {part.slice(1, -1)}
         </span>
       );

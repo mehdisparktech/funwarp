@@ -10,38 +10,34 @@ function WorldMap() {
   const { global } = useContent();
 
   return (
-    <div className="overflow-hidden border border-cream/15 bg-[#1a1f26]">
-      <div className="flex items-end justify-between gap-4 border-b border-cream/10 px-5 py-4 sm:px-6">
+    <div className="overflow-hidden rounded-[28px] border border-dark/8 bg-white shadow-[0_20px_50px_rgba(33,33,33,0.06)]">
+      <div className="flex items-end justify-between gap-4 border-b border-dark/8 px-5 py-4 sm:px-6">
         <div>
-          <p className="font-display text-xl font-semibold tracking-tight text-cream sm:text-2xl">
+          <p className="font-display text-xl font-semibold tracking-tight sm:text-2xl">
             {global.mapTitle}
           </p>
-          <p className="mt-1 text-sm leading-relaxed text-cream/45">
+          <p className="mt-1 text-sm leading-relaxed text-dark/50">
             {global.mapSubtitle}
           </p>
         </div>
-        <p className="shrink-0 font-display text-3xl font-bold text-cream/15 sm:text-4xl">
+        <p className="shrink-0 font-display text-3xl font-bold text-primary/20 sm:text-4xl">
           {global.mapCount}
         </p>
       </div>
 
-      <div className="relative aspect-[16/10] w-full bg-slate/40 sm:aspect-[16/9]">
+      <div className="relative aspect-[16/10] w-full bg-surface sm:aspect-[16/9]">
         <iframe
           title="FUNWARP global collaboration map"
           src={global.mapEmbedUrl}
-          className="absolute inset-0 h-full w-full border-0 grayscale contrast-125 saturate-50"
+          className="absolute inset-0 h-full w-full border-0"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1f26]/80 via-transparent to-[#1a1f26]/35"
-        />
       </div>
 
-      <div className="border-t border-cream/10 px-5 py-5 sm:px-6">
-        <p className="mb-3 font-display text-sm font-medium text-cream/70">
+      <div className="border-t border-dark/8 px-5 py-5 sm:px-6">
+        <p className="mb-3 text-sm font-medium text-dark/70">
           {global.regionsLabel}
         </p>
         <div className="flex flex-wrap gap-2">
@@ -50,16 +46,16 @@ function WorldMap() {
               key={region}
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: 0.05 + i * 0.04, duration: 0.35, ease: easeOut }}
-              className="inline-flex items-center gap-2 bg-cream/[0.06] px-3 py-1.5 font-display text-[13px] font-medium tracking-wide text-cream/85"
+              className="inline-flex items-center gap-2 rounded-full bg-surface px-3 py-1.5 text-[13px] font-medium text-dark/80"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-cream/70" />
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
               {region}
             </motion.span>
           ))}
         </div>
-        <p className="mt-4 text-[12px] leading-relaxed text-cream/35">
+        <p className="mt-4 text-[12px] leading-relaxed text-dark/40">
           {global.mapDisclaimer}
         </p>
       </div>
@@ -71,17 +67,15 @@ export function Global() {
   const { global } = useContent();
 
   return (
-    <section className="border-y border-cream/10 py-24 sm:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+    <section className="section-pad bg-surface">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <Reveal>
-            <p className="mb-4 text-xs uppercase tracking-[0.22em] text-taupe">
-              {global.eyebrow}
-            </p>
-            <h2 className="font-display text-4xl font-bold leading-[1.02] sm:text-6xl">
+            <p className="eyebrow mb-3">{global.eyebrow}</p>
+            <h2 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
               <RichLines value={global.headline} />
             </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-cream/55 sm:text-lg">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-dark/60 sm:text-lg">
               {global.description}
             </p>
           </Reveal>

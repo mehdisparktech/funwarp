@@ -208,9 +208,9 @@ export const defaultContent: SiteContent = {
     ],
   },
   technology: {
-    headline: "Right tools.\nLong shelf life.",
+    headline: "Modern tools.\n*Built to last.*",
     description:
-      "We choose stacks for reliability and velocity — not trend cycles.",
+      "We pick stacks for speed today and stability tomorrow — proven technologies that scale with your product.",
     groups: [
       {
         category: "Frontend",

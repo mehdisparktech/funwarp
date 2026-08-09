@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { type ReactNode, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type ButtonProps = {
@@ -13,6 +14,7 @@ type ButtonProps = {
   onClick?: () => void;
   fullWidth?: boolean;
   magnetic?: boolean;
+  withArrow?: boolean;
 };
 
 export function Button({
@@ -24,6 +26,7 @@ export function Button({
   onClick,
   fullWidth,
   magnetic = true,
+  withArrow = true,
 }: ButtonProps) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
 
@@ -35,7 +38,7 @@ export function Button({
     const rect = el.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    el.style.transform = `translate(${x * 0.16}px, ${y * 0.16}px)`;
+    el.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
   };
 
   const handleLeave = () => {
@@ -45,14 +48,33 @@ export function Button({
   };
 
   const classes = cn(
-    "inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3.5 text-sm font-semibold transition-all duration-300 will-change-transform",
+    "group inline-flex items-center justify-center gap-3 rounded-full py-1.5 pr-1.5 pl-6 text-[15px] font-medium capitalize transition-all duration-300 will-change-transform",
     variant === "primary" &&
-    "bg-cream text-ink shadow-[0_10px_40px_rgba(223,208,184,0.18)] hover:bg-[#efe4d0] hover:shadow-[0_14px_48px_rgba(223,208,184,0.28)]",
+    "border border-primary bg-primary text-white hover:bg-primary/90",
     variant === "secondary" &&
-    "border border-cream/20 bg-transparent text-cream hover:border-cream/45 hover:bg-cream/[0.06]",
-    variant === "ghost" && "text-cream/80 hover:text-cream",
+    "border border-dark/15 bg-white text-dark hover:border-primary hover:text-primary",
+    variant === "ghost" && "px-0 py-0 pr-0 text-dark/70 hover:text-primary",
     fullWidth && "w-full",
     className,
+  );
+
+  const content = (
+    <>
+      <span>{children}</span>
+      {withArrow && variant !== "ghost" ? (
+        <span
+          className={cn(
+            "grid h-9 w-9 place-items-center rounded-full border transition",
+            variant === "primary" &&
+            "border-primary bg-white text-primary group-hover:bg-dark group-hover:text-white group-hover:border-dark",
+            variant === "secondary" &&
+            "border-dark/10 bg-surface text-dark group-hover:bg-primary group-hover:text-white group-hover:border-primary",
+          )}
+        >
+          <ArrowUpRight className="h-4 w-4 transition duration-300 group-hover:rotate-45" />
+        </span>
+      ) : null}
+    </>
   );
 
   if (href) {
@@ -65,7 +87,7 @@ export function Button({
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
       >
-        {children}
+        {content}
       </Link>
     );
   }
@@ -79,7 +101,7 @@ export function Button({
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
     >
-      {children}
+      {content}
     </button>
   );
 }

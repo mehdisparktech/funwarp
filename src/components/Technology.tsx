@@ -9,38 +9,67 @@ export function Technology() {
   const { technology } = useContent();
 
   return (
-    <section className="border-y border-cream/10 bg-[#1c2229] py-24 sm:py-32">
-      <div className="mx-auto max-w-[1400px] px-5 sm:px-8">
+    <section className="section-pad relative overflow-hidden bg-surface">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 top-10 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-primary/5 blur-3xl"
+      />
+
+      <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal>
-          <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-2xl font-display text-4xl font-bold sm:text-5xl">
+          <div className="mb-12 max-w-3xl md:mb-14">
+            <p className="eyebrow mb-3">Technology</p>
+            <h2 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl">
               <RichLines value={technology.headline} />
             </h2>
-            <p className="max-w-sm text-cream/55">{technology.description}</p>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-dark/60 sm:text-lg">
+              {technology.description}
+            </p>
           </div>
         </Reveal>
 
-        <Stagger className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4" delay={0.1}>
-          {technology.groups.map((group) => (
+        <Stagger className="grid gap-4 sm:grid-cols-2" delay={0.06}>
+          {technology.groups.map((group, i) => (
             <StaggerItem key={group.category}>
-              <div>
-                <p className="border-b border-cream/15 pb-3 font-mono text-xs uppercase tracking-[0.2em] text-taupe">
-                  {group.category}
-                </p>
-                <ul className="mt-5 space-y-3">
-                  {group.items.map((item, i) => (
-                    <motion.li
-                      key={item}
-                      whileHover={{ x: 8, color: "#dfd0b8" }}
-                      transition={{ duration: 0.25 }}
-                      className="font-display text-2xl text-cream/85"
-                      style={{ transitionDelay: `${i * 20}ms` }}
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.3 }}
+                className={`h-full rounded-[24px] border p-6 sm:p-8 ${i === 0
+                    ? "border-primary/20 bg-primary text-white sm:col-span-2"
+                    : "border-dark/8 bg-white text-dark"
+                  }`}
+              >
+                <div className="flex flex-wrap items-end justify-between gap-4">
+                  <div>
+                    <p
+                      className={`text-sm font-medium ${i === 0 ? "text-white/70" : "text-primary"
+                        }`}
                     >
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </div>
+                      {String(i + 1).padStart(2, "0")} — {group.category}
+                    </p>
+                    <div
+                      className={`mt-5 flex flex-wrap gap-2 ${i === 0 ? "sm:mt-6" : ""
+                        }`}
+                    >
+                      {group.items.map((item) => (
+                        <span
+                          key={item}
+                          className={`rounded-full px-4 py-2 text-sm font-medium ${i === 0
+                              ? "bg-white/15 text-white"
+                              : "bg-surface text-dark/80"
+                            }`}
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </StaggerItem>
           ))}
         </Stagger>
