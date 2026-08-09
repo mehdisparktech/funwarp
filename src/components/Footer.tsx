@@ -26,7 +26,7 @@ export function Footer() {
             <p className="mt-4 text-[15px] leading-relaxed text-white/55">
               {footer.tagline}
             </p>
-            <div className="mt-7">
+            <div className="mt-7 inline-flex">
               <PrimaryButton href="/contact" variant="dark">
                 Start a project
               </PrimaryButton>

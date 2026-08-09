@@ -54,4 +54,4 @@ export const stagger = {
   },
 };
 
-export const viewport = { once: false, margin: "-80px" as const, amount: 0.2 };
+export const viewport = { once: true, margin: "-60px" as const, amount: 0.2 };

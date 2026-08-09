@@ -147,16 +147,18 @@ export function Team() {
         </Stagger>
 
         <Reveal delay={0.1} className="mt-12">
-          <div className="flex flex-col items-start justify-between gap-5 rounded-[28px] border border-dark/8 bg-surface p-8 sm:flex-row sm:items-center sm:p-10">
-            <div>
+          <div className="flex flex-col gap-6 rounded-[28px] border border-dark/8 bg-surface p-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-10">
+            <div className="min-w-0 flex-1 text-left">
               <h3 className="font-display text-2xl font-semibold tracking-tight text-dark sm:text-3xl">
                 {team.ctaHeadline}
               </h3>
-              <p className="mt-2 max-w-lg text-dark/60">{team.ctaDescription}</p>
+              <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-dark/60">
+                {team.ctaDescription}
+              </p>
             </div>
-            <PrimaryButton href={team.ctaHref}>
-              {team.ctaLabel}
-            </PrimaryButton>
+            <div className="shrink-0">
+              <PrimaryButton href={team.ctaHref}>{team.ctaLabel}</PrimaryButton>
+            </div>
           </div>
         </Reveal>
       </div>

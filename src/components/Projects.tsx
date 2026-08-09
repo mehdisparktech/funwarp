@@ -116,8 +116,8 @@ export function Projects() {
               >
                 <div
                   className={`grid lg:min-h-[340px] ${i % 2 === 0
-                      ? "lg:grid-cols-[1.05fr_0.95fr]"
-                      : "lg:grid-cols-[0.95fr_1.05fr]"
+                    ? "lg:grid-cols-[1.05fr_0.95fr]"
+                    : "lg:grid-cols-[0.95fr_1.05fr]"
                     }`}
                 >
                   <div
@@ -192,20 +192,22 @@ export function Projects() {
         </div>
 
         <Reveal delay={0.1} className="mt-10">
-          <div className="flex flex-col items-start justify-between gap-5 rounded-[28px] bg-dark p-8 text-white sm:flex-row sm:items-center sm:p-10">
-            <div>
+          <div className="flex flex-col gap-6 rounded-[28px] bg-dark p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-10">
+            <div className="min-w-0 flex-1 text-left">
               <p className="text-sm font-medium text-white/50">Next project</p>
               <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                 Have a product idea like these?
               </h3>
-              <p className="mt-2 max-w-lg text-white/60">
+              <p className="mt-2 max-w-lg text-[15px] leading-relaxed text-white/60">
                 Tell us the goal — we will map scope, timeline and the right
                 stack to ship it.
               </p>
             </div>
-            <PrimaryButton href="/contact" variant="dark">
-              Start a project
-            </PrimaryButton>
+            <div className="shrink-0">
+              <PrimaryButton href="/contact" variant="dark">
+                Start a project
+              </PrimaryButton>
+            </div>
           </div>
         </Reveal>
       </div>

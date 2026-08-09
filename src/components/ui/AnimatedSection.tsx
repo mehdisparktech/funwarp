@@ -20,10 +20,10 @@ export function AnimatedSection({
   return (
     <motion.div
       id={id}
-      initial={{ opacity: 0, y: 72 }}
+      initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.12, margin: "-40px" }}
-      transition={{ duration: 0.75, ease: easeOut }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.55, ease: easeOut }}
       className={cn(className)}
     >
       {children}

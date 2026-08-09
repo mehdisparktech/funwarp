@@ -60,9 +60,7 @@ export default function Home() {
       <AnimatedSection>
         <FAQ />
       </AnimatedSection>
-      <AnimatedSection>
-        <CTA />
-      </AnimatedSection>
+      <CTA />
     </>
   );
 }

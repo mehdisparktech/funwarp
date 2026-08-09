@@ -38,9 +38,8 @@ export function Reveal({
         x: o.x,
         y: o.y,
         scale: o.scale,
-        filter: "blur(6px)",
       }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
       viewport={viewport}
       transition={{ duration, delay, ease: easeOut }}
       className={cn(className)}
@@ -89,13 +88,11 @@ export function StaggerItem({
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 40, scale: 0.96, filter: "blur(6px)" },
+        hidden: { opacity: 0, y: 24 },
         show: {
           opacity: 1,
           y: 0,
-          scale: 1,
-          filter: "blur(0px)",
-          transition: { duration: 0.65, ease: easeOut },
+          transition: { duration: 0.5, ease: easeOut },
         },
       }}
       className={cn(className)}
